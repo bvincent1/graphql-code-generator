@@ -46,7 +46,7 @@ export class ReactQueryVisitor extends ClientSideBaseVisitor<ReactQueryRawPlugin
     },
     mutation: {
       hook: 'useMutation',
-      options: 'UseMutationOptions',
+      options: 'UseClientRequestOptions',
     },
   };
 
@@ -74,7 +74,7 @@ export class ReactQueryVisitor extends ClientSideBaseVisitor<ReactQueryRawPlugin
   }
 
   private createFetcher(raw: ReactQueryRawPluginConfig['fetcher']): FetcherRenderer {
-    if (raw === 'fetch') {
+    if (raw === 'hook') {
       return new FetchFetcher(this);
     } else if (typeof raw === 'object' && 'endpoint' in raw) {
       return new HardcodedFetchFetcher(this, raw);
@@ -96,11 +96,14 @@ export class ReactQueryVisitor extends ClientSideBaseVisitor<ReactQueryRawPlugin
       return baseImports;
     }
 
-    return [...baseImports, `import { ${Array.from(this.reactQueryIdentifiersInUse).join(', ')} } from 'react-query';`];
+    return [
+      ...baseImports,
+      `import { ${Array.from(this.reactQueryIdentifiersInUse).join(', ')} } from 'graphql-hooks';`,
+    ];
   }
 
-  public getFetcherImplementation(): string {
-    return this.fetcher.generateFetcherImplementaion();
+  public generateImplementaion(): string {
+    return this.fetcher.generateImplementation();
   }
 
   protected buildOperation(

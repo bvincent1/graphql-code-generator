@@ -29,7 +29,7 @@ export const plugin: PluginFunction<ReactQueryRawPluginConfig, Types.ComplexPlug
 
   if (visitor.hasOperations) {
     return {
-      prepend: [...visitor.getImports(), visitor.getFetcherImplementation()],
+      prepend: [...visitor.getImports(), visitor.generateImplementaion()],
       content: [visitor.fragments, ...visitorResult.definitions.filter(t => typeof t === 'string')].join('\n'),
     };
   }

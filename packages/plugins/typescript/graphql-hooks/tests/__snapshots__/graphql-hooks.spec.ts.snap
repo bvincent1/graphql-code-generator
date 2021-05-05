@@ -155,17 +155,11 @@ export const TestDocument = \`
   }
 }
     \`;
-export const useTestQuery = <
-      TData = TTestQuery,
-      TError = unknown
-    >(
-      dataSource: { endpoint: string, fetchParams?: RequestInit }, 
-      variables?: TTestQueryVariables, 
-      options?: UseQueryOptions<TTestQuery, TError, TData>
+export const useTestQuery: UseQueryResult<TypedQuery<TestQuery>, TTestQueryVariables> = (
+      options?: UseQueryOptions<TTestQueryVariables>
     ) => 
-    useQuery<TTestQuery, TError, TData>(
-      ['test', variables],
-      fetcher<TTestQuery, TTestQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, TestDocument, variables),
+    useQuery(
+      TestDocument,
       options
     );
 export const TestDocument = \`
@@ -175,15 +169,15 @@ export const TestDocument = \`
   }
 }
     \`;
-export const useTestMutation = <
-      TError = unknown,
-      TContext = unknown
-    >(
-      dataSource: { endpoint: string, fetchParams?: RequestInit }, 
-      options?: UseMutationOptions<TTestMutation, TError, TTestMutationVariables, TContext>
+export const useTestMutation: [
+      FetchData<TypedQuery<TestMutation>, TTestMutationVariables>,
+      UseClientRequestResult<TypedQuery<TestMutation>>,
+      ResetFunction
+    ] = (
+      options?: UseClientRequestOptions<TTestMutationVariables>
     ) => 
-    useMutation<TTestMutation, TError, TTestMutationVariables, TContext>(
-      (variables?: TTestMutationVariables) => fetcher<TTestMutation, TTestMutationVariables>(dataSource.endpoint, dataSource.fetchParams || {}, TestDocument, variables)(),
+    useMutation(
+      TestDocument,
       options
     );"
 `;
