@@ -6,7 +6,7 @@ import { generateQueryKey, generateQueryVariablesSignature } from './variables-g
 export class GraphQLRequestClientFetcher implements FetcherRenderer {
   constructor(private visitor: ReactQueryVisitor) {}
 
-  generateFetcherImplementaion(): string {
+  generateImplementation(): string {
     return `
 function fetcher<TData, TVariables>(client: GraphQLClient, query: string, variables?: TVariables) {
   return async (): Promise<TData> => client.request<TData, TVariables>(query, variables);

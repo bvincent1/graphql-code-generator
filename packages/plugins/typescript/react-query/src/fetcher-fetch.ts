@@ -6,7 +6,7 @@ import { generateQueryKey, generateQueryVariablesSignature } from './variables-g
 export class FetchFetcher implements FetcherRenderer {
   constructor(private visitor: ReactQueryVisitor) {}
 
-  generateFetcherImplementaion(): string {
+  generateImplementation(): string {
     return `
 function fetcher<TData, TVariables>(endpoint: string, requestInit: RequestInit, query: string, variables?: TVariables) {
   return async (): Promise<TData> => {

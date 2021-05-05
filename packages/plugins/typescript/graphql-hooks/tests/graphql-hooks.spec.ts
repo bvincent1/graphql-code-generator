@@ -432,8 +432,6 @@ describe('graphql-hooks', () => {
 
       const out = (await plugin(schema, docs, config)) as Types.ComplexPluginOutput;
 
-      console.log(out.content);
-
       expect(out.prepend).toContain(
         `import { useQuery, UseQueryOptions, useMutation, UseClientRequestOptions } from 'graphql-hooks';`
       );

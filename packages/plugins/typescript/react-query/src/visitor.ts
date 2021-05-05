@@ -100,7 +100,7 @@ export class ReactQueryVisitor extends ClientSideBaseVisitor<ReactQueryRawPlugin
   }
 
   public getFetcherImplementation(): string {
-    return this.fetcher.generateFetcherImplementaion();
+    return this.fetcher.generateImplementation();
   }
 
   protected buildOperation(

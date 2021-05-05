@@ -102,7 +102,7 @@ export class ReactQueryVisitor extends ClientSideBaseVisitor<ReactQueryRawPlugin
     ];
   }
 
-  public generateImplementaion(): string {
+  public generateImplementation(): string {
     return this.fetcher.generateImplementation();
   }
 
