@@ -31,7 +31,7 @@ export class HardcodedFetchFetcher implements FetcherRenderer {
       .join('\n');
   }
 
-  generateFetcherImplementaion(): string {
+  generateImplementation(): string {
     return `
 function fetcher<TData, TVariables>(query: string, variables?: TVariables) {
   return async (): Promise<TData> => {

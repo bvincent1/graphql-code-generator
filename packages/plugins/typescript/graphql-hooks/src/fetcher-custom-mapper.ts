@@ -20,7 +20,7 @@ export class CustomMapperFetcher implements FetcherRenderer {
     return `${this._mapper.type}<${operationResultType}, ${operationVariablesTypes}>`;
   }
 
-  generateFetcherImplementaion(): string {
+  generateImplementation(): string {
     if (this._mapper.isExternal) {
       return buildMapperImport(
         this._mapper.source,

@@ -1,7 +1,7 @@
 import { OperationDefinitionNode } from 'graphql';
 
 export interface FetcherRenderer {
-  generateFetcherImplementaion: () => string;
+  generateImplementation: () => string;
   generateQueryHook: (
     node: OperationDefinitionNode,
     documentVariableName: string,
